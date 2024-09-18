@@ -1,0 +1,17 @@
+{% include "layaout.html" %}
+{% block title %}Books{% endblock title %}
+{% block content %}
+<h1>books</h1>
+<ul>
+    {% for book in object_list %}
+    <li>
+       <a href="{% url 'books_detail' book.id %}">  
+         Title: {{book.title}}
+         Author: {{book.author}}
+         Year: {{book.year}}</a>
+    </li>
+    {% empty %}
+        <li>No books available</li>
+    {% endfor %}
+</ul>
+{% endblock  %}

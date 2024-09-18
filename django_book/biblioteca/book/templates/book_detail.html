@@ -1,0 +1,12 @@
+{% extends "layaout.html" %}
+{% block title %}{{object.title}} {% endblock title %}
+{% block content %}
+  <h1>{{object.title}}</h1>
+  <h2>{{object.author}}</h2>
+  <p>{{object.year}}</p>
+  <a href="{% url "edit_book" book.id %}">Editar</a>
+  <form action="post">
+    {% csrf_token %}
+    <input type="submit" value="Editar">
+  </form>
+{% endblock  %}

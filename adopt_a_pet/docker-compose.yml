@@ -1,0 +1,26 @@
+services:
+  web:
+    image: django_pests
+    container_name: django_pests
+    build:
+      context: ./mypets
+    ports:
+      - "8000:8000"     
+    volumes:
+      - ./mypets:/app
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=datapets
+    volumes:
+      - mysql_data:/data/db
+      # - ./mysql-init:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  mysql_data:
